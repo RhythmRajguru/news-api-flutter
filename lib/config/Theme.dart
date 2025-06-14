@@ -96,7 +96,7 @@ var darkTheme=ThemeData(
         fontWeight: FontWeight.w500,
       ),
     ),
-    colorScheme: const ColorScheme.light(
+    colorScheme: const ColorScheme.dark(
       brightness: Brightness.dark,
       background: darkBgColor,
       onBackground: darkFontColor,

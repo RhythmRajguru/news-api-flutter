@@ -11,6 +11,55 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Newseekers',style: Theme.of(context).textTheme.headlineLarge,),
       ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              height: MediaQuery.of(context).size.width*.14,
+              width: MediaQuery.of(context).size.width*.6,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(20)
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      width: 40,
+                      height: 40,
+                    padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      child: Center(child: Icon(Icons.home,size: 25,color: Theme.of(context).colorScheme.onBackground,))),
+                  Container(
+                      width: 40,
+                      height: 40,
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      child: Center(child: Icon(Icons.book,size: 25,color: Theme.of(context).colorScheme.onBackground,))),
+                  Container(
+                    width: 40,
+                      height: 40,
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      child: Center(child: Icon(Icons.settings,size: 25,color: Theme.of(context).colorScheme.onBackground,))),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
