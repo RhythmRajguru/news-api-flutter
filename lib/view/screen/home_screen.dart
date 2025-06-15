@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:news_api/components/navigation_bar.dart';
+import 'package:news_api/view/screen/news_detail.dart';
 import 'package:news_api/view/widget/news_tile.dart';
 import 'package:news_api/view/widget/tranding_card.dart';
 
@@ -35,6 +37,9 @@ class HomeScreen extends StatelessWidget {
                       imageUrl: 'https://c.ndtvimg.com/2025-06/cnabujbk_air-india-bombay-flightradar-_625x300_13_June_25.jpg?downsize=773:435',
                       tag: 'Trending No.1',
                       time: '2 mins ago',
+                      onTap: () {
+                        Get.to(()=>NewsDetail());
+                    },
                     ),
                     TrandingCard(
                       title: "Karisma Kapoor's ex-husband Sunjay Kapur passed away at 53: Here's how he died",
@@ -42,6 +47,9 @@ class HomeScreen extends StatelessWidget {
                       imageUrl: 'https://www.livemint.com/lm-img/img/2025/06/13/600x338/karisma_1749783840231_1749783840400.jpg',
                       tag: 'Trending No.1',
                       time: '1 days ago',
+                      onTap: () {
+                        Get.to(()=>NewsDetail());
+                    },
                     ),
                     TrandingCard(
                       title: 'I let ChatGPT manage my money for 30 days and the results shocked me',
@@ -49,6 +57,9 @@ class HomeScreen extends StatelessWidget {
                       imageUrl: 'https://www.livemint.com/lm-img/img/2025/06/12/600x338/OPENAI-CHATGPT--0_1744423543278_1749716788119.JPG',
                       tag: 'Trending No.1',
                       time: '2 days ago',
+                      onTap: () {
+                        Get.to(()=>NewsDetail());
+                      },
                     ),
                   ],
                 ),
