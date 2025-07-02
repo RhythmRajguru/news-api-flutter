@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../model/news_model.dart';
+
 class NewsDetail extends StatelessWidget {
-  const NewsDetail({super.key});
+
+  final NewsModel news;
+  const NewsDetail({required this.news});
 
   @override
   Widget build(BuildContext context) {
@@ -23,41 +27,32 @@ class NewsDetail extends StatelessWidget {
                ),
                child: ClipRRect(
                  borderRadius: BorderRadius.circular(10),
-                 child: Image.network('https://static.toiimg.com/thumb/msid-121862502,imgsize-1743979,width-400,resizemode-4/121862502.jpg',
+                 child: Image.network(news.urlToImage ?? "https://www.financialexpress.com/wp-content/uploads/2023/07/Breaking-2.jpg",
                           fit: BoxFit.cover,),
                ),),
             SizedBox(height: 20,),
-            Text("I let ChatGPT manage my money for 30 days and the results shocked me",
+            Text(news.title!,
               maxLines: 2,overflow: TextOverflow.ellipsis,
               style:TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
               SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+
                   Row(
                     children: [
-                      CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,),
+                      CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,child: Text(news.author![0]),),
                       SizedBox(width: 10,),
-                      Text('Nitish Kumar',style: TextStyle(fontSize: 18,color: Theme.of(context).colorScheme.secondaryContainer),),
+                      Text(news.author ?? "Unknown",maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 18,color: Theme.of(context).colorScheme.secondaryContainer),),
                     ],
                   ),
-                  Text('2 days ago',style: Theme.of(context).textTheme.labelSmall,),
-                ],
-              ),
               SizedBox(height: 20,),
-              Text('Two people died and some are feared swept away after an old bridge over the Indrayani '
-                  'river in Pune collapsed on Sunday. Three persons were rescued so far following the incident'
-                  ' which occurred near Kundamala area in Maval tehsil, police said.'
-                  'Two people died and some are feared swept away after an old bridge over the Indrayani '
-                  'river in Pune collapsed on Sunday. Three persons were rescued so far following the incident'
-                  ' which occurred near Kundamala area in Maval tehsil, police said.'
-                  'Two people died and some are feared swept away after an old bridge over the Indrayani '
-                  'river in Pune collapsed on Sunday. Three persons were rescued so far following the incident'
-                  ' which occurred near Kundamala area in Maval tehsil, police said.'
-                  'Two people died and some are feared swept away after an old bridge over the Indrayani '
-                  'river in Pune collapsed on Sunday. Three persons were rescued so far following the incident'
-                  ' which occurred near Kundamala area in Maval tehsil, police said.',
+              Text(news.description ?? "No data available",
                   style: TextStyle(fontSize: 18,color: Theme.of(context).colorScheme.secondaryContainer)),
+              SizedBox(height: 10,),
+              Container(
+                  margin: EdgeInsets.only(top: 10,right: 5),
+
+                  alignment: Alignment.centerRight,
+                  child: Text(news.publishedAt,style: Theme.of(context).textTheme.labelSmall,)),
+              SizedBox(height: 50,),
             ],
           ),
         ),
