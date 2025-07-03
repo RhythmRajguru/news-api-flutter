@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_api/components/navigation_bar.dart';
+import 'package:news_api/components/trending_loading_card.dart';
 import 'package:news_api/controller/news_controller.dart';
 import 'package:news_api/view/screen/news_detail.dart';
 import 'package:news_api/view/widget/news_tile.dart';
 import 'package:news_api/view/widget/tranding_card.dart';
+
+import '../../components/loading_listtile.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -62,7 +65,11 @@ class HomeScreen extends StatelessWidget {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Obx(()=>newsController.isTrendingLoading.value
-                      ?CircularProgressIndicator()
+                      ?Row(children: [
+                       TrendingLoadingCard(),
+                       TrendingLoadingCard(),
+                  ],
+                  )
                       : Row(
                     children:
                     newsController.trendingNewsList.map((e)=>
@@ -75,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                           onTap: () {
                             Get.to(()=>NewsDetail(news: e,));
                           },
-                        ),).toList(),
+                        ),).toList().sublist(0,5),
 
                   ),)
                 ),
@@ -92,7 +99,13 @@ class HomeScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Obx(()=>newsController.isTrendingLoading.value
-                        ?CircularProgressIndicator()
+                        ?Column(children: [
+                          LoadingListtile(),
+                          LoadingListtile(),
+                          LoadingListtile(),
+                          LoadingListtile(),
+                          LoadingListtile(),
+                    ],)
                         :Column(
                       children:
                       newsController.trendingNewsList.map((e)=>
@@ -121,7 +134,13 @@ class HomeScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Obx(()=>newsController.isTeslaNewsLoading.value
-                        ?CircularProgressIndicator()
+                        ?Column(children: [
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                    ],)
                         :Column(
                       children:
                       newsController.teslaNewsList.map((e)=>
@@ -150,7 +169,13 @@ class HomeScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Obx(()=>newsController.isAppleNewsLoading.value
-                        ?CircularProgressIndicator()
+                        ?Column(children: [
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                    ],)
                         :Column(
                       children:
                       newsController.appleNewsList.map((e)=>
@@ -179,7 +204,13 @@ class HomeScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Obx(()=>newsController.isGoogleNewsLoading.value
-                        ?CircularProgressIndicator()
+                        ?Column(children: [
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                      LoadingListtile(),
+                    ],)
                         :Column(
                       children:
                       newsController.googleNewsList.map((e)=>
@@ -207,7 +238,11 @@ class HomeScreen extends StatelessWidget {
                 SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Obx(()=>newsController.isMicrosoftNewsLoading.value
-                        ?CircularProgressIndicator()
+                        ?Row(children: [
+                      TrendingLoadingCard(),
+                      TrendingLoadingCard(),
+                    ],
+                    )
                         : Row(
                       children:
                       newsController.microsoftNewsList.map((e)=>
@@ -220,7 +255,7 @@ class HomeScreen extends StatelessWidget {
                             onTap: () {
                               Get.to(()=>NewsDetail(news: e,));
                             },
-                          ),).toList(),
+                          ),).toList().sublist(0,5),
 
                     ),)
                 ),
