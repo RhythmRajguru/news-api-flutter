@@ -61,7 +61,9 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 20,),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Obx(()=>Row(
+                  child: Obx(()=>newsController.isTrendingLoading.value
+                      ?CircularProgressIndicator()
+                      : Row(
                     children:
                     newsController.trendingNewsList.map((e)=>
                         TrandingCard(
@@ -81,17 +83,19 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('News For You',style: Theme.of(context).textTheme.bodyLarge,),
+                    Text('News for you',style: Theme.of(context).textTheme.bodyLarge,),
                     Text('See all',style: Theme.of(context).textTheme.labelSmall,)
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*.15),
+                  margin: EdgeInsets.only(bottom: 20),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: Obx(()=>Column(
+                    child: Obx(()=>newsController.isTrendingLoading.value
+                        ?CircularProgressIndicator()
+                        :Column(
                       children:
-                      newsController.newsForYouList.map((e)=>
+                      newsController.trendingNewsList.map((e)=>
                           NewsTile(
                             title: e.title,
                             author: e.author ?? "Unknown",
@@ -99,13 +103,128 @@ class HomeScreen extends StatelessWidget {
                             time: e.publishedAt,
                             onTap: () {
                               Get.to(()=>NewsDetail(news: e,));
-                          },
+                            },
+                          ),).toList().sublist(0,5),
+                    ),),
 
-
-                          ),).toList(),
-                    ),)
                   ),
-                )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Tesla News',style: Theme.of(context).textTheme.bodyLarge,),
+                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Obx(()=>newsController.isTeslaNewsLoading.value
+                        ?CircularProgressIndicator()
+                        :Column(
+                      children:
+                      newsController.teslaNewsList.map((e)=>
+                          NewsTile(
+                            title: e.title,
+                            author: e.author ?? "Unknown",
+                            imageUrl: e.urlToImage ?? "https://www.financialexpress.com/wp-content/uploads/2023/07/Breaking-2.jpg",
+                            time: e.publishedAt,
+                            onTap: () {
+                              Get.to(()=>NewsDetail(news: e,));
+                            },
+                          ),).toList().sublist(0,5),
+                    ),),
+
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Apple News',style: Theme.of(context).textTheme.bodyLarge,),
+                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Obx(()=>newsController.isAppleNewsLoading.value
+                        ?CircularProgressIndicator()
+                        :Column(
+                      children:
+                      newsController.appleNewsList.map((e)=>
+                          NewsTile(
+                            title: e.title,
+                            author: e.author ?? "Unknown",
+                            imageUrl: e.urlToImage ?? "https://www.financialexpress.com/wp-content/uploads/2023/07/Breaking-2.jpg",
+                            time: e.publishedAt,
+                            onTap: () {
+                              Get.to(()=>NewsDetail(news: e,));
+                            },
+                          ),).toList().sublist(0,5),
+                    ),),
+
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Google News',style: Theme.of(context).textTheme.bodyLarge,),
+                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 50),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Obx(()=>newsController.isGoogleNewsLoading.value
+                        ?CircularProgressIndicator()
+                        :Column(
+                      children:
+                      newsController.googleNewsList.map((e)=>
+                          NewsTile(
+                            title: e.title,
+                            author: e.author ?? "Unknown",
+                            imageUrl: e.urlToImage ?? "https://www.financialexpress.com/wp-content/uploads/2023/07/Breaking-2.jpg",
+                            time: e.publishedAt,
+                            onTap: () {
+                              Get.to(()=>NewsDetail(news: e,));
+                            },
+                          ),).toList().sublist(0,5),
+                    ),),
+
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Microsoft News',style: Theme.of(context).textTheme.bodyLarge,),
+                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                  ],
+                ),
+                SizedBox(height: 20,),
+                SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Obx(()=>newsController.isMicrosoftNewsLoading.value
+                        ?CircularProgressIndicator()
+                        : Row(
+                      children:
+                      newsController.microsoftNewsList.map((e)=>
+                          TrandingCard(
+                            title: e.title,
+                            author: e.author ?? "Unknown",
+                            imageUrl: e.urlToImage,
+                            tag: 'Trending No.1',
+                            time: e.publishedAt,
+                            onTap: () {
+                              Get.to(()=>NewsDetail(news: e,));
+                            },
+                          ),).toList(),
+
+                    ),)
+                ),
+                SizedBox(height: 50,)
               ],
             ),
           ),
