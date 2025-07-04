@@ -28,7 +28,7 @@ class ArticalsScreen extends StatelessWidget {
             margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*.15),
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child:  Obx(()=>newsController.isTrendingLoading.value
+              child:  Obx(()=>newsController.isNewsForYouLoading.value
                   ?Column(children: [
                 LoadingListtile(),
                 LoadingListtile(),
@@ -38,7 +38,7 @@ class ArticalsScreen extends StatelessWidget {
               ],)
                   :Column(
                 children:
-                newsController.trendingNewsList.map((e)=>
+                newsController.newsForYouList.map((e)=>
                     NewsTile(
                       title: e.title,
                       author: e.author ?? "Unknown",
@@ -47,7 +47,7 @@ class ArticalsScreen extends StatelessWidget {
                       onTap: () {
                         Get.to(()=>NewsDetail(news: e,));
                       },
-                    ),).toList().sublist(0,5),
+                    ),).toList(),
               ),),
             ),
           )

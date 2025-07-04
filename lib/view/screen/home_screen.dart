@@ -87,41 +87,7 @@ class HomeScreen extends StatelessWidget {
                   ),)
                 ),
                 SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('News for you',style: Theme.of(context).textTheme.bodyLarge,),
-                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Obx(()=>newsController.isTrendingLoading.value
-                        ?Column(children: [
-                          LoadingListtile(),
-                          LoadingListtile(),
-                          LoadingListtile(),
-                          LoadingListtile(),
-                          LoadingListtile(),
-                    ],)
-                        :Column(
-                      children:
-                      newsController.trendingNewsList.map((e)=>
-                          NewsTile(
-                            title: e.title,
-                            author: e.author ?? "Unknown",
-                            imageUrl: e.urlToImage ?? "https://www.financialexpress.com/wp-content/uploads/2023/07/Breaking-2.jpg",
-                            time: e.publishedAt,
-                            onTap: () {
-                              Get.to(()=>NewsDetail(news: e,));
-                            },
-                          ),).toList().sublist(0,5),
-                    ),),
 
-                  ),
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

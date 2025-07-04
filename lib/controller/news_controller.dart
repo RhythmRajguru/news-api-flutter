@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_api/model/news_model.dart';
@@ -7,6 +8,14 @@ import 'package:news_api/model/news_model.dart';
 
 
 class NewsController extends GetxController{
+
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void onClose() {
+    searchController.dispose();
+    super.onClose();
+  }
 
   RxList<NewsModel> trendingNewsList=<NewsModel>[].obs;
   RxList<NewsModel> newsForYouList=<NewsModel>[].obs;
@@ -168,5 +177,35 @@ class NewsController extends GetxController{
     catch(e){
       print(e);
     }isMicrosoftNewsLoading.value=false;}
+
+  Future<void> searchNews(String search) async{
+    isNewsForYouLoading.value=true;
+    try{
+      var baseUrl="https://newsapi.org/v2/everything?q=$search&apikey=39ffef110bd245e8aa5abf670fc91ab2";
+      var response=await http.get(Uri.parse(baseUrl));
+
+      if(response.statusCode==200){
+
+        var body=jsonDecode(response.body);
+        var articles=body['articles'];
+
+        newsForYouList.clear();
+
+        int i=0;
+        for(var news in articles){
+          i++;
+          newsForYouList.add(NewsModel.fromJson(news));
+          if(i==10){
+            break;
+          }
+        }
+      }else{
+        Get.snackbar('Error', 'Something went wrong in news for you list');
+      }
+    }
+    catch(e){
+      print(e);
+    }isNewsForYouLoading.value=false;}
+
 
 }
