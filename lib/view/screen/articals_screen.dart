@@ -46,7 +46,7 @@ class ArticalsScreen extends StatelessWidget {
                       time: e.publishedAt,
                       onTap: () {
                         Get.to(()=>NewsDetail(news: e,));
-                      },
+                      }, author_firstchar: e.author?[0] ?? 'Unknown',
                     ),).toList(),
               ),),
             ),

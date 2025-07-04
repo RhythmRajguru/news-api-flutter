@@ -8,9 +8,10 @@ class TrandingCard extends StatelessWidget {
   final String time;
   final String title;
   final String author;
+  final String author_firstchar;
   final VoidCallback onTap;
 
-  const TrandingCard({super.key, required this.imageUrl, required this.tag, required this.time, required this.title, required this.author, required this.onTap});
+  const TrandingCard({super.key, required this.imageUrl, required this.tag, required this.time, required this.title, required this.author, required this.onTap, required this.author_firstchar});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class TrandingCard extends StatelessWidget {
                child: Row(
                 children: [
                   SizedBox(width: 10,),
-                  CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,),
+                  CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,child: Text(author_firstchar,style: TextStyle(color: Colors.white),),),
                   SizedBox(width: 10,),
                   Text(author),
                 ],

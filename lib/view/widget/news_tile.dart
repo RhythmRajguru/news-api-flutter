@@ -6,10 +6,11 @@ class NewsTile extends StatelessWidget {
   final String title;
   final String time;
   final String author;
+  final String author_firstchar;
   final VoidCallback onTap;
 
 
-   NewsTile({super.key, required this.imageUrl, required this.title, required this.time, required this.author, required this.onTap});
+   NewsTile({super.key, required this.imageUrl, required this.title, required this.time, required this.author, required this.onTap, required this.author_firstchar});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class NewsTile extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,),
+                      CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,child: Text(author_firstchar,style: TextStyle(color: Colors.white),),),
                       SizedBox(width: 10,),
                       Expanded(child: Text(author,maxLines: 1,overflow: TextOverflow.ellipsis,)),
                     ],

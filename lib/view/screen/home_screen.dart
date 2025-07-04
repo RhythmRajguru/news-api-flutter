@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                           time: e.publishedAt,
                           onTap: () {
                             Get.to(()=>NewsDetail(news: e,));
-                          },
+                          }, author_firstchar: e.author?[0] ?? 'Unknown',
                         ),).toList().sublist(0,5),
 
                   ),)
@@ -117,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                             time: e.publishedAt,
                             onTap: () {
                               Get.to(()=>NewsDetail(news: e,));
-                            },
+                            }, author_firstchar: e.author?[0] ?? 'Unknown',
                           ),).toList().sublist(0,5),
                     ),),
 
@@ -152,7 +152,7 @@ class HomeScreen extends StatelessWidget {
                             time: e.publishedAt,
                             onTap: () {
                               Get.to(()=>NewsDetail(news: e,));
-                            },
+                            }, author_firstchar: e.author?[0] ?? 'Unknown',
                           ),).toList().sublist(0,5),
                     ),),
 
@@ -187,7 +187,7 @@ class HomeScreen extends StatelessWidget {
                             time: e.publishedAt,
                             onTap: () {
                               Get.to(()=>NewsDetail(news: e,));
-                            },
+                            }, author_firstchar: e.author?[0] ?? 'Unknown',
                           ),).toList().sublist(0,5),
                     ),),
 
@@ -220,12 +220,12 @@ class HomeScreen extends StatelessWidget {
                             time: e.publishedAt,
                             onTap: () {
                               Get.to(()=>NewsDetail(news: e,));
-                            },
+                            }, author_firstchar: e.author?[0] ?? 'Unknown',
                           ),).toList().sublist(0,5),
 
                     ),)
                 ),
-                SizedBox(height: 50,)
+                SizedBox(height: 150,)
               ],
             ),
           ),
