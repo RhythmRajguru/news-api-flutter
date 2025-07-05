@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:news_api/controller/news_controller.dart';
 
 import '../../model/news_model.dart';
 
 class NewsDetail extends StatelessWidget {
 
   final NewsModel news;
-  const NewsDetail({required this.news});
+  NewsDetail({required this.news});
+
+  NewsController newsController=Get.put(NewsController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +43,44 @@ class NewsDetail extends StatelessWidget {
 
                   Row(
                     children: [
-                      CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,child: Text(news.author![0]),),
+                      CircleAvatar(backgroundColor: Theme.of(context).colorScheme.primary,minRadius: 15,maxRadius: 15,child: Text(news.author![0],style: TextStyle(color: Colors.white),),),
                       SizedBox(width: 10,),
                       Text(news.author ?? "Unknown",maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 18,color: Theme.of(context).colorScheme.secondaryContainer),),
                     ],
                   ),
               SizedBox(height: 20,),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              children: [
+                Obx(() => IconButton(
+                  onPressed: () {
+                    if (newsController.isSpeaking.value) {
+                      newsController.stop();
+                    } else {
+                      newsController.speak(news.description ?? "No Description");
+                    }
+                  },
+                  icon: Icon(
+                    newsController.isSpeaking.value ? Icons.stop : Icons.play_arrow_rounded,
+                    size: 50,
+                  ),
+                )),
+                Expanded(
+                  child: Obx(() => Lottie.asset(
+                    'assets/animation/audio_wave.json',
+                    height: 70,
+                    animate: newsController.isSpeaking.value,
+                    fit: BoxFit.fill,
+                  )),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20,),
               Text(news.description ?? "No data available",
                   style: TextStyle(fontSize: 18,color: Theme.of(context).colorScheme.secondaryContainer)),
               SizedBox(height: 10,),

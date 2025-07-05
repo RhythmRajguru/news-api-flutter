@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:news_api/components/navigation_bar.dart';
 import 'package:news_api/components/trending_loading_card.dart';
 import 'package:news_api/controller/news_controller.dart';
+import 'package:news_api/view/screen/articals_screen.dart';
 import 'package:news_api/view/screen/news_detail.dart';
 import 'package:news_api/view/widget/news_tile.dart';
 import 'package:news_api/view/widget/tranding_card.dart';
@@ -58,7 +59,12 @@ class HomeScreen extends StatelessWidget {
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
                  Text('Hottest News',style: Theme.of(context).textTheme.bodyLarge,),
-                 Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                 InkWell(
+                     onTap: (){
+                       Get.to(()=>ArticalsScreen());
+                       newsController.searchNews(newsController.searchController.text='top headlines');
+                     },
+                     child: Text('See all',style: Theme.of(context).textTheme.labelSmall,))
                ],
              ),
                 SizedBox(height: 20,),
@@ -92,7 +98,12 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Tesla News',style: Theme.of(context).textTheme.bodyLarge,),
-                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                    InkWell(
+                        onTap: (){
+                          Get.to(()=>ArticalsScreen());
+                          newsController.searchNews(newsController.searchController.text='Tesla');
+                        },
+                        child: Text('See all',style: Theme.of(context).textTheme.labelSmall,))
                   ],
                 ),
                 Container(
@@ -127,7 +138,12 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Apple News',style: Theme.of(context).textTheme.bodyLarge,),
-                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                    InkWell(
+                        onTap: (){
+                          Get.to(()=>ArticalsScreen());
+                          newsController.searchNews(newsController.searchController.text='Apple');
+                        },
+                        child: Text('See all',style: Theme.of(context).textTheme.labelSmall,))
                   ],
                 ),
                 Container(
@@ -162,7 +178,12 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Google News',style: Theme.of(context).textTheme.bodyLarge,),
-                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                    InkWell(
+                        onTap: (){
+                          Get.to(()=>ArticalsScreen());
+                          newsController.searchNews(newsController.searchController.text='Google');
+                        },
+                        child: Text('See all',style: Theme.of(context).textTheme.labelSmall,))
                   ],
                 ),
                 Container(
@@ -197,7 +218,12 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Microsoft News',style: Theme.of(context).textTheme.bodyLarge,),
-                    Text('See all',style: Theme.of(context).textTheme.labelSmall,)
+                    InkWell(
+                        onTap: (){
+                          Get.to(()=>ArticalsScreen());
+                          newsController.searchNews(newsController.searchController.text='Microsoft');
+                        },
+                        child: Text('See all',style: Theme.of(context).textTheme.labelSmall,))
                   ],
                 ),
                 SizedBox(height: 20,),
