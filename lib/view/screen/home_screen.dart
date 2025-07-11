@@ -5,6 +5,7 @@ import 'package:news_api/components/trending_loading_card.dart';
 import 'package:news_api/controller/news_controller.dart';
 import 'package:news_api/view/screen/articals_screen.dart';
 import 'package:news_api/view/screen/news_detail.dart';
+import 'package:news_api/view/screen/news_source_screen.dart';
 import 'package:news_api/view/widget/news_tile.dart';
 import 'package:news_api/view/widget/tranding_card.dart';
 
@@ -19,28 +20,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(100)
-            ),
-            child: Icon(Icons.dashboard),
-          ),
-          SizedBox(width: 10,),
           InkWell(
             onTap: (){
-
+              Get.to(()=>NewsSourceScreen());
             },
             child: Container(
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(100)
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(100)
               ),
-              child: Icon(Icons.person),
+              child: Icon(Icons.dashboard),
             ),
           ),
           SizedBox(width: 10,),

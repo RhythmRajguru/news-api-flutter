@@ -5,6 +5,8 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_api/model/news_model.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:news_api/model/news_source_model.dart';
 
 
 
@@ -24,6 +26,7 @@ class NewsController extends GetxController{
   RxList<NewsModel> teslaNewsList=<NewsModel>[].obs;
   RxList<NewsModel> googleNewsList=<NewsModel>[].obs;
   RxList<NewsModel> microsoftNewsList=<NewsModel>[].obs;
+  RxList<NewsSourceModel> newsSourcesList=<NewsSourceModel>[].obs;
 
 
   RxBool isTrendingLoading=false.obs;
@@ -32,6 +35,7 @@ class NewsController extends GetxController{
   RxBool isTeslaNewsLoading=false.obs;
   RxBool isGoogleNewsLoading=false.obs;
   RxBool isMicrosoftNewsLoading=false.obs;
+  RxBool isNewsSourcesLoading=false.obs;
   RxBool isSpeaking=false.obs;
 
   FlutterTts flutterTts =FlutterTts();
@@ -43,6 +47,7 @@ class NewsController extends GetxController{
     getTeslaNews();
     getGoogleNews();
     getMicrosoftNews();
+    getNewsSources();
     super.onInit();
   }
 
@@ -182,6 +187,28 @@ class NewsController extends GetxController{
       print(e);
     }isMicrosoftNewsLoading.value=false;}
 
+  Future<void> getNewsSources() async{
+    isNewsSourcesLoading.value=true;
+    try{
+      var baseUrl="https://newsapi.org/v2/sources?apikey=39ffef110bd245e8aa5abf670fc91ab2";
+      var response=await http.get(Uri.parse(baseUrl));
+
+      if(response.statusCode==200){
+
+        var body=jsonDecode(response.body);
+        var sources=body['sources'];
+
+        for(var newsSources in sources){
+          newsSourcesList.add(NewsSourceModel.fromJson(newsSources));
+        }
+      }else{
+        Get.snackbar('Error', 'Something went wrong in news for you list');
+      }
+    }
+    catch(e){
+      print(e);
+    }isNewsSourcesLoading.value=false;}
+
   Future<void> searchNews(String search) async{
     isNewsForYouLoading.value=true;
     try{
@@ -210,6 +237,7 @@ class NewsController extends GetxController{
     catch(e){
       print(e);
     }isNewsForYouLoading.value=false;}
+
 
   Future<void> speak(String text) async{
     isSpeaking.value=true;

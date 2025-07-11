@@ -17,6 +17,19 @@ class NewsDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('News Detail'),
+        actions: [
+          Obx(()=>IconButton(
+            onPressed: () {
+              newsController.isSpeaking.value
+                  ?newsController.stop()
+                  :newsController.speak(news.description ?? "No Description");
+            },
+            icon: Icon(
+              newsController.isSpeaking.value ? Icons.stop : Icons.play_arrow_rounded,
+              size: 40,
+            ),
+          )),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -49,46 +62,17 @@ class NewsDetail extends StatelessWidget {
                     ],
                   ),
               SizedBox(height: 20,),
-          Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              children: [
-                Obx(() => IconButton(
-                  onPressed: () {
-                    if (newsController.isSpeaking.value) {
-                      newsController.stop();
-                    } else {
-                      newsController.speak(news.description ?? "No Description");
-                    }
-                  },
-                  icon: Icon(
-                    newsController.isSpeaking.value ? Icons.stop : Icons.play_arrow_rounded,
-                    size: 50,
-                  ),
-                )),
-                Expanded(
-                  child: Obx(() => Lottie.asset(
-                    'assets/animation/audio_wave.json',
-                    height: 70,
-                    animate: newsController.isSpeaking.value,
-                    fit: BoxFit.fill,
-                  )),
-                ),
-              ],
-            ),
-          ),
+
           SizedBox(height: 20,),
               Text(news.description ?? "No data available",
                   style: TextStyle(fontSize: 18,color: Theme.of(context).colorScheme.secondaryContainer)),
-              SizedBox(height: 10,),
-              Container(
-                  margin: EdgeInsets.only(top: 10,right: 5),
+              SizedBox(height: 20,),
 
-                  alignment: Alignment.centerRight,
-                  child: Text(news.publishedAt,style: Theme.of(context).textTheme.labelSmall,)),
+                  Container(
+                    alignment: Alignment.centerRight,
+                      margin: EdgeInsets.only(top: 10,right: 5),
+                      child: Text(news.publishedAt,style: Theme.of(context).textTheme.labelSmall,)),
+
               SizedBox(height: 50,),
             ],
           ),

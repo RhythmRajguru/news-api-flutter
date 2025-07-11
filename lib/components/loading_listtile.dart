@@ -17,7 +17,7 @@ class LoadingListtile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          LoadingContainer(height: 120, width: 120,),
+          LoadingContainer(height: 120, width: 120, top_margin: 0,),
           SizedBox(width: 10,),
           Expanded(
             child: Column(
@@ -25,17 +25,17 @@ class LoadingListtile extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    LoadingContainer(height: 20, width: 20,),
+                    LoadingContainer(height: 20, width: 20, top_margin: 0,),
                     SizedBox(width: 10,),
-                    LoadingContainer(height: 10, width: MediaQuery.of(context).size.width/4),
+                    LoadingContainer(height: 10, width: MediaQuery.of(context).size.width/4, top_margin: 0,),
                   ],
                 ),
                 SizedBox(height: 10,),
-                LoadingContainer(height: 20, width: MediaQuery.of(context).size.width/2),
+                LoadingContainer(height: 20, width: MediaQuery.of(context).size.width/2, top_margin: 0,),
                 SizedBox(height: 5,),
-                LoadingContainer(height: 20, width: MediaQuery.of(context).size.width/2),
+                LoadingContainer(height: 20, width: MediaQuery.of(context).size.width/2, top_margin: 0,),
                 SizedBox(height: 10,),
-                LoadingContainer(height: 10, width: MediaQuery.of(context).size.width/4),
+                LoadingContainer(height: 10, width: MediaQuery.of(context).size.width/4, top_margin: 0,),
               ],
             ),
           )                    ],

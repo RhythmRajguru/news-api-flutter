@@ -4,13 +4,15 @@ import 'package:shimmer/shimmer.dart';
 class LoadingContainer extends StatelessWidget {
   final double height;
   final double width;
+  final double top_margin;
 
-   LoadingContainer({required this.height, required this.width});
+   LoadingContainer({required this.height, required this.width, required this.top_margin});
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
         child: Container(
+          margin: EdgeInsets.only(top:top_margin),
           width: width,
           height: height,
           decoration: BoxDecoration(
